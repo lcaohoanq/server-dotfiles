@@ -3,6 +3,7 @@
 # Version
 RP_VERSION='15.1.0'
 ATUIN_VERSION='18.10.0'
+ZOXIDE_VERSION='0.9.8'
 FZF_VERSION='0.67.0'
 
 # Màu mè tí cho chuyên nghiệp
@@ -48,6 +49,30 @@ if [[ "$OS" == "Linux" && "$ARCH" == "x86_64" ]]; then
     rm -rf ripgrep-${RP_VERSION}*
   else
     echo "    -> Ripgrep đã cài đặt."
+  fi
+
+  # --- Zoxide ---
+  if ! command -v zoxide &>/dev/null; then
+    echo "    -> Installing Zoxide..."
+    curl -LO https://github.com/ajeetdsouza/zoxide/releases/download/v${ZOXIDE_VERSION}/zoxide-${ZOXIDE_VERSION}-x86_64-unknown-linux-musl.tar.gz
+    tar -xzf zoxide-${ZOXIDE_VERSION}-x86_64-unknown-linux-musl.tar.gz
+    sudo mv zoxide /usr/local/bin/
+    rm -f zoxide-${ZOXIDE_VERSION}-x86_64-unknown-linux-musl.tar.gz
+    # Cấu hình Zoxide cho Zsh
+    if [ -f "$HOME/.zshrc" ]; then
+        if ! grep -q "zoxide init zsh" "$HOME/.zshrc"; then
+            echo "    -> Cấu hình Zoxide cho Zsh"
+cat <<EOT >> "$HOME/.zshrc"
+# --- Zoxide (Enhanced cd) ---
+eval "\$(zoxide init zsh)"
+# -----------------------------
+EOT
+        else
+            echo "    -> .zshrc đã có cấu hình Zoxide. Bỏ qua."
+        fi
+    fi
+  else
+    echo "    -> Zoxide đã cài đặt."
   fi
 
   # --- Atuin (Terminal History) ---
