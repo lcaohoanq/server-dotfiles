@@ -64,9 +64,9 @@ if [[ "$OS" == "Linux" && "$ARCH" == "x86_64" ]]; then
   echo -e "${GREEN}[*] Đang cấu hình FZF Integration (Ctrl+T)...${NC}"
   
   # Tải script key-bindings về thư mục home
-  # Dùng đúng version của binary để đảm bảo tương thích
-  curl -sL https://raw.githubusercontent.com/junegunn/fzf/v${FZF_VERSION}/shell/key-bindings.zsh -o ~/.fzf-key-bindings.zsh
-  curl -sL https://raw.githubusercontent.com/junegunn/fzf/v${FZF_VERSION}/shell/key-bindings.bash -o ~/.fzf-key-bindings.bash
+  # https://github.com/junegunn/fzf/tree/master/shell
+  curl -sL https://raw.githubusercontent.com/junegunn/fzf/master/shell/key-bindings.zsh -o ~/.fzf-key-bindings.zsh
+  # curl -sL https://raw.githubusercontent.com/junegunn/fzf/master/shell/key-bindings.bash -o ~/.fzf-key-bindings.bash
 
   # Hàm inject config vào shell rc
   configure_shell() {
@@ -96,7 +96,7 @@ if [[ "$OS" == "Linux" && "$ARCH" == "x86_64" ]]; then
 
   # Thử cấu hình cho cả Zsh và Bash (tùy server dùng shell nào)
   configure_shell "$HOME/.zshrc" ".fzf-key-bindings.zsh"
-  configure_shell "$HOME/.bashrc" ".fzf-key-bindings.bash"
+  # configure_shell "$HOME/.bashrc" ".fzf-key-bindings.bash"
 
 else
   echo "(!) Kiến trúc máy không phải x86_64 hoặc không phải Linux. Bỏ qua bước tải Binary."
