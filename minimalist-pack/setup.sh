@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Version
+RP_VERSION='15.1.0'
+FZF_VERSION='0.67.0'
+
 # Màu mè tí cho chuyên nghiệp
 GREEN='\033[0;32m'
 NC='\033[0m' # No Color
@@ -42,10 +46,10 @@ if [[ "$OS" == "Linux" && "$ARCH" == "x86_64" ]]; then
   # https://github.com/BurntSushi/ripgrep/releases/tag/15.1.0
   if ! command -v rg &>/dev/null; then
     echo "    -> Installing Ripgrep..."
-    curl -LO https://github.com/BurntSushi/ripgrep/releases/download/15.1.0/ripgrep-15.1.0-x86_64-unknown-linux-musl.tar.gz
-    tar -xzf ripgrep-15.1.0-x86_64-unknown-linux-musl.tar.gz
-    sudo mv ripgrep-15.1.0-x86_64-unknown-linux-musl/rg /usr/local/bin/
-    rm -rf ripgrep-15.1.0*
+    curl -LO https://github.com/BurntSushi/ripgrep/releases/download/${RP_VERSION}/ripgrep-${RP_VERSION}-x86_64-unknown-linux-musl.tar.gz
+    tar -xzf ripgrep-${RP_VERSION}-x86_64-unknown-linux-musl.tar.gz
+    sudo mv ripgrep-${RP_VERSION}-x86_64-unknown-linux-musl/rg /usr/local/bin/
+    rm -rf ripgrep-${RP_VERSION}*
   else
     echo "    -> Ripgrep đã cài đặt."
   fi
@@ -54,10 +58,10 @@ if [[ "$OS" == "Linux" && "$ARCH" == "x86_64" ]]; then
   # https://github.com/junegunn/fzf/releases/tag/v0.67.0
   if ! command -v fzf &>/dev/null; then
     echo "    -> Installing FZF..."
-    curl -LO https://github.com/junegunn/fzf/releases/download/v0.67.0/fzf-0.67.0-linux_amd64.tar.gz
-    tar -xzf fzf-0.67.0-linux_amd64.tar.gz
+    curl -LO https://github.com/junegunn/fzf/releases/download/v${FZF_VERSION}/fzf-${FZF_VERSION}-linux_amd64.tar.gz
+    tar -xzf fzf-${FZF_VERSION}-linux_amd64.tar.gz
     sudo mv fzf /usr/local/bin/
-    rm -f fzf-0.67.0-linux_amd64.tar.gz
+    rm -f fzf-${FZF_VERSION}-linux_amd64.tar.gz
   else
     echo "    -> FZF đã cài đặt."
   fi
