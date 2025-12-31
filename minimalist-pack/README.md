@@ -14,6 +14,6 @@
 ```zsh
 git clone https://github.com/lcaohoanq/server-dotfiles.git ~/.server-dotfiles &&
 cd ~/.server-dotfiles/minimalist-pack &&
-chmod +x &&
+chmod +x ./setup.sh &&
 ./setup.sh
 ```
